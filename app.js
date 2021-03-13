@@ -3,7 +3,7 @@ const power = (base, exponent) => {
     return base;
   }
 
-  let temp = power(base, exponent >> 1);
+  const temp = power(base, exponent >> 1);
 
   return exponent % 2 ? base * temp * temp : temp * temp;
 }
@@ -15,8 +15,8 @@ const getRandomInt = (min, max) => {
 }
 
 const millerTest = (oddNum, number) => {
-  let rand = getRandomInt(2, number - 2);
-  let x = power(rand, oddNum) % number;
+  const rand = getRandomInt(2, number - 2);
+  const x = power(rand, oddNum) % number;
 
   if (x === 1 || x === number - 1) {
     return true;
@@ -62,12 +62,8 @@ const isPrime = (number, accuracy) => {
 
 const isPrimeInArray = (number, arrayToCheck) => {
   let count = 0;
-  const accuracy = 5;
-  for (let i = 0; i < arrayToCheck.length; i++) {
-    if (number === arrayToCheck[i]) {
-      count++;
-    }
-  }
+  const accuracy = 4;
+  arrayToCheck.map((numberToCheck) => numberToCheck === number ? count++ : count);
   if (isPrime(count, accuracy)) {
     return true;
   } else {
@@ -76,6 +72,6 @@ const isPrimeInArray = (number, arrayToCheck) => {
 }
 
 const formatArray = (firstArray, secondArray) => {
-  let newArray = firstArray.filter(number => !isPrimeInArray(number, secondArray));
+  const newArray = firstArray.filter(number => !isPrimeInArray(number, secondArray));
   return newArray;
 }
